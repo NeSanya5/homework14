@@ -7,11 +7,11 @@ public class ProductBasket {
     private static Product[] product = new Product[5];
     private static int number = 0;
 
-    public static void addProductInBasket(String name, int price) {
+    public static void addProductInBasket(Product products) {
         if (number == 5) {
             System.out.println("Невозможно добавить");
         } else {
-            product[number] = new Product(name, price);
+            product[number] = products;
             number++;
         }
     }
