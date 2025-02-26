@@ -11,6 +11,11 @@ public class SimpleProduct extends Product {
         return prise;
     }
     public String toString() {
-        return getName() + " : " + prise;
+        return super.toString() + prise;
+    }
+
+    @Override
+    public boolean isSpecial() {
+        return false;
     }
 }
