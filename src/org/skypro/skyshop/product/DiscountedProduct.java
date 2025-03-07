@@ -23,4 +23,14 @@ public class DiscountedProduct extends Product {
     public boolean isSpecial() {
         return true;
     }
+
+    @Override
+    public String getName() {
+        return "";
+    }
+
+    @Override
+    public String getStringRepresentation() {
+        return super.getStringRepresentation();
+    }
 }
