@@ -1,14 +1,10 @@
 package org.skypro.skyshop.searchEngine;
 
+import org.skypro.skyshop.product.Product;
 
 public class SearchEngine {
-    private static int quantity;
 
-    public SearchEngine(int quantity) {
-        this.quantity = quantity;
-    }
-
-    private static Searchable[] searchables = new Searchable[quantity];
+    private static Searchable[] searchables = new Searchable[5];
     private static int number = 0;
 
     public static void add(Searchable searchable) {

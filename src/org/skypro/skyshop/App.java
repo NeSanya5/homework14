@@ -37,7 +37,7 @@ public class App {
         System.out.println();
         Article glasses  = new Article("Очки", "Очки -3");
         Article blueSneakers = new Article("Кроссовки", "Кроссовки с размером 42, синего цвета");
-        SearchEngine searchEngine = new SearchEngine(6);
+        SearchEngine searchEngine = new SearchEngine();
         searchEngine.add(socks);
         searchEngine.add(cardigan);
         searchEngine.add(blueSneakers);
@@ -45,5 +45,9 @@ public class App {
         searchEngine.add(jacket);
         searchEngine.add(shirt);
         System.out.println(Arrays.toString(searchEngine.search("Очки")));
+        System.out.println(Arrays.toString(searchEngine.search("Носки")));
+        System.out.println(Arrays.toString(searchEngine.search("Куртка")));
+        System.out.println(Arrays.toString(searchEngine.search("Кофта")));
+        System.out.println(Arrays.toString(searchEngine.search("Яблоко")));
     }
 }
