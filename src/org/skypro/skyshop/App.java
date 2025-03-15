@@ -1,13 +1,15 @@
 package org.skypro.skyshop;
 
 import org.skypro.skyshop.basket.ProductBasket;
-import org.skypro.skyshop.product.DiscountedProduct;
-import org.skypro.skyshop.product.FixPriceProduct;
-import org.skypro.skyshop.product.Product;
-import org.skypro.skyshop.product.SimpleProduct;
+import org.skypro.skyshop.product.*;
+import org.skypro.skyshop.product.Article;
+import org.skypro.skyshop.searchEngine.SearchEngine;
+
+import java.util.Arrays;
 
 public class App {
     public static void main(String[] args) {
+        System.out.println("Проверка корзины");
         Product socks = new SimpleProduct ("Носки",200);
         Product cardigan = new FixPriceProduct("Кофта" );
         Product jacket = new DiscountedProduct ("Куртка",8700, 15);
@@ -21,7 +23,6 @@ public class App {
         ProductBasket.addProductInBasket(shirt);
         ProductBasket.addProductInBasket(feltBoots);
         ProductBasket.addProductInBasket(sneakers);
-
         ProductBasket.printBasket();
         System.out.println(ProductBasket.productVerification("Носки"));
         System.out.println(ProductBasket.productVerification("Кросовки"));
@@ -29,6 +30,24 @@ public class App {
         ProductBasket.printBasket();
         System.out.println(ProductBasket.generalPrice());
         System.out.println(ProductBasket.productVerification("Носки"));
+        System.out.println();
 
+        System.out.println("Проверка поисковой системы");
+
+        System.out.println();
+        Article glasses  = new Article("Очки", "Очки -3");
+        Article blueSneakers = new Article("Кроссовки", "Кроссовки с размером 42, синего цвета");
+        SearchEngine searchEngine = new SearchEngine();
+        searchEngine.add(socks);
+        searchEngine.add(cardigan);
+        searchEngine.add(blueSneakers);
+        searchEngine.add(glasses);
+        searchEngine.add(jacket);
+        searchEngine.add(shirt);
+        System.out.println(Arrays.toString(searchEngine.search("Очки")));
+        System.out.println(Arrays.toString(searchEngine.search("Носки")));
+        System.out.println(Arrays.toString(searchEngine.search("Куртка")));
+        System.out.println(Arrays.toString(searchEngine.search("Кофта")));
+        System.out.println(Arrays.toString(searchEngine.search("Яблоко")));
     }
 }
