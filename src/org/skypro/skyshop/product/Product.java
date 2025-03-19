@@ -3,11 +3,16 @@ package org.skypro.skyshop.product;
 import org.skypro.skyshop.searchEngine.Searchable;
 
 
+
 public abstract class Product implements Searchable {
     private String nameProduct;
 
     public Product(String name) {
-        this.nameProduct = name;
+        if (name.isBlank()) {
+            throw new IllegalArgumentException("Неправильное имя для продукта ");
+        } else {
+            this.nameProduct = name;
+        }
     }
 
     public abstract int getPrice();
