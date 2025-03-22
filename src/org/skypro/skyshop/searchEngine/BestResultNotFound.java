@@ -1,6 +1,6 @@
 package org.skypro.skyshop.searchEngine;
 
-public class BestResultNotFound extends Exception{
+public class BestResultNotFound extends IllegalArgumentException{
     String serch;
 
     public BestResultNotFound(String serch) {
