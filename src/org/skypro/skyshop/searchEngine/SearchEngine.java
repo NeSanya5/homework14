@@ -29,4 +29,20 @@ public class SearchEngine {
        }
        return result;
     }
+
+    public static  Searchable getSearchTerm(String search) throws BestResultNotFound {
+        Searchable result = null;
+
+        for (Searchable searchable : searchables) {
+
+            if (searchable != null && searchable.searchTerm().contains(search)) {
+                result = searchable;
+            }
+        }
+        if (result == null) {
+            throw new BestResultNotFound(search);
+        }
+
+        return result;
+    }
 }

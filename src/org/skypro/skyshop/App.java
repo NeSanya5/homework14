@@ -3,6 +3,7 @@ package org.skypro.skyshop;
 import org.skypro.skyshop.basket.ProductBasket;
 import org.skypro.skyshop.product.*;
 import org.skypro.skyshop.product.Article;
+import org.skypro.skyshop.searchEngine.BestResultNotFound;
 import org.skypro.skyshop.searchEngine.SearchEngine;
 
 import java.util.Arrays;
@@ -49,5 +50,39 @@ public class App {
         System.out.println(Arrays.toString(searchEngine.search("Куртка")));
         System.out.println(Arrays.toString(searchEngine.search("Кофта")));
         System.out.println(Arrays.toString(searchEngine.search("Яблоко")));
+        System.out.println();
+
+        System.out.println("Проверка исключений");
+
+        System.out.println();
+        try {
+            Product potato = new SimpleProduct("  ", 900);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e);
+        }
+        try {
+            Product tomato = new SimpleProduct("Помидор", -1);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e);
+        }
+        try {
+            Product carrot = new DiscountedProduct("Морковь", 200, 110);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e);
+        }
+
+
+        try {
+            System.out.println(searchEngine.getSearchTerm("Кофта"));
+        } catch (BestResultNotFound e) {
+            System.out.println(e);
+        }
+
+        try {
+            System.out.println(searchEngine.getSearchTerm("Яблоко"));
+        } catch (BestResultNotFound e) {
+            System.out.println(e);
+        }
+
     }
 }
