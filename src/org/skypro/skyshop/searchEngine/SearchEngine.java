@@ -2,31 +2,30 @@ package org.skypro.skyshop.searchEngine;
 
 import org.skypro.skyshop.product.Product;
 
+import java.util.LinkedList;
+import java.util.List;
+
 public class SearchEngine {
 
-    private static Searchable[] searchables = new Searchable[5];
+    private static List<Searchable> searchables = new LinkedList<>();
     private static int number = 0;
 
     public static void add(Searchable searchable) {
-        if (number == 5) {
-            System.out.println("Невозможно добавить");
-        } else {
-            searchables[number] = searchable;
+            searchables.add(searchable);
             number++;
-        }
     }
 
-    public static Searchable[] search(String search) {
-       Searchable[] result = new Searchable[5];
+    public static List<Searchable> search(String search) {
+        List<Searchable> result = new LinkedList<>();
        int count = 0;
        for (Searchable searchable : searchables){
-           if (count >= 5) {
-               break;
-           }
            if (searchable != null && searchable.searchTerm().contains(search)) {
-               result[count++] = searchable;
+               result.add(searchable);
            }
        }
+        if (result.size() == 0) {
+            System.out.println("Поиск неудался");
+        }
        return result;
     }
 
@@ -34,7 +33,6 @@ public class SearchEngine {
         Searchable result = null;
 
         for (Searchable searchable : searchables) {
-
             if (searchable != null && searchable.searchTerm().contains(search)) {
                 result = searchable;
             }

@@ -8,6 +8,8 @@ import org.skypro.skyshop.searchEngine.SearchEngine;
 
 import java.util.Arrays;
 
+import static org.skypro.skyshop.basket.ProductBasket.cleanProductBasket;
+
 public class App {
     public static void main(String[] args) {
         System.out.println("Проверка корзины");
@@ -27,7 +29,7 @@ public class App {
         ProductBasket.printBasket();
         System.out.println(ProductBasket.productVerification("Носки"));
         System.out.println(ProductBasket.productVerification("Кросовки"));
-        ProductBasket.cleanBasket();
+        ProductBasket.cleanAllBasket();
         ProductBasket.printBasket();
         System.out.println(ProductBasket.generalPrice());
         System.out.println(ProductBasket.productVerification("Носки"));
@@ -45,11 +47,11 @@ public class App {
         searchEngine.add(glasses);
         searchEngine.add(jacket);
         searchEngine.add(shirt);
-        System.out.println(Arrays.toString(searchEngine.search("Очки")));
-        System.out.println(Arrays.toString(searchEngine.search("Носки")));
-        System.out.println(Arrays.toString(searchEngine.search("Куртка")));
-        System.out.println(Arrays.toString(searchEngine.search("Кофта")));
-        System.out.println(Arrays.toString(searchEngine.search("Яблоко")));
+        System.out.println(searchEngine.search("Очки"));
+        System.out.println(searchEngine.search("Носки"));
+        System.out.println(searchEngine.search("Куртка"));
+        System.out.println(searchEngine.search("Кофта"));
+        System.out.println(searchEngine.search("Яблоко"));
         System.out.println();
 
         System.out.println("Проверка исключений");
@@ -83,6 +85,32 @@ public class App {
         } catch (BestResultNotFound e) {
             System.out.println(e);
         }
+        System.out.println();
+
+        System.out.println("ДЗ 19");
+
+        System.out.println();
+
+        ProductBasket.addProductInBasket(socks);
+        ProductBasket.addProductInBasket(cardigan);
+        ProductBasket.addProductInBasket(jacket);
+        ProductBasket.addProductInBasket(shirt);
+        ProductBasket.addProductInBasket(feltBoots);
+        ProductBasket.addProductInBasket(feltBoots);
+        ProductBasket.addProductInBasket(feltBoots);
+        ProductBasket.addProductInBasket(sneakers);
+
+        ProductBasket.printBasket();
+
+        System.out.println(cleanProductBasket("Валенки"));
+
+        ProductBasket.printBasket();
+
+        System.out.println(cleanProductBasket("картошка"));
+
+        ProductBasket.printBasket();
+
+
 
     }
 }

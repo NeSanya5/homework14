@@ -1,20 +1,22 @@
 package org.skypro.skyshop.basket;
 
+import org.skypro.skyshop.product.FixPriceProduct;
 import org.skypro.skyshop.product.Product;
+
+import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.SortedMap;
 
 
 public class ProductBasket {
-    private static Product[] product = new Product[5];
+    private static List<Product> product = new LinkedList<>();
     private static int number = 0;
     private static int quantitySpecialProduct = 0;
 
     public static void addProductInBasket(Product products) {
-        if (number == 5) {
-            System.out.println("Невозможно добавить");
-        } else {
-            product[number] = products;
-            number++;
-        }
+        product.add(products);
+        number++;
     }
 
     public static int generalPrice() {
@@ -60,17 +62,35 @@ public class ProductBasket {
         for (Product pro : product) {
             if (pro == null) {
                 continue;
-            } else if (pro.getName().equals(name)) {
+            } else if (pro.getNameProduct().equals(name)) {
                 productVerification = true;
             }
         }
         return productVerification;
     }
 
-    public static void cleanBasket() {
-        for (number = 0; number < product.length; number++) {
-            product[number] = null;
+    public static void cleanAllBasket() {
+        while (product.size() != 0) {
+            product.remove(0);
         }
+    }
+
+    public static List<Product> cleanProductBasket(String name) {
+        List<Product> result = new LinkedList<>();
+        Iterator<Product> iterator = product.iterator();
+        while (iterator.hasNext()) {
+            Product element = iterator.next();
+            if (element.getNameProduct().equals(name)) {
+                result.add(element);
+                iterator.remove();
+            }
+        }
+        if (result.size() == 0) {
+            System.out.println("Список пуст");
+        } else {
+            System.out.println("Товары удалены :");
+        }
+        return result;
     }
 
     public static int quantitySpecialProduct() {
@@ -81,5 +101,6 @@ public class ProductBasket {
         }
         return quantitySpecialProduct;
     }
+
 
 }
