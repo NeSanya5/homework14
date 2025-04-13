@@ -34,7 +34,7 @@ public class DiscountedProduct extends Product {
 
     @Override
     public String getName() {
-        return "";
+        return getNameProduct();
     }
 
     @Override

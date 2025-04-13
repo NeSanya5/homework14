@@ -26,6 +26,7 @@ public class App {
         ProductBasket.addProductInBasket(shirt);
         ProductBasket.addProductInBasket(feltBoots);
         ProductBasket.addProductInBasket(sneakers);
+
         ProductBasket.printBasket();
         System.out.println(ProductBasket.productVerification("Носки"));
         System.out.println(ProductBasket.productVerification("Кросовки"));
