@@ -5,7 +5,11 @@ public class SimpleProduct extends Product {
 
     public SimpleProduct(String name, int prise) {
         super(name);
-        this.prise = prise;
+        if (prise <= 1) {
+            throw new IllegalArgumentException("цена не может быть меньше 0");
+        } else {
+            this.prise = prise;
+        }
     }
     public int getPrice(){
         return prise;
