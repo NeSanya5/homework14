@@ -25,7 +25,7 @@ public class SimpleProduct extends Product {
 
     @Override
     public String getName() {
-        return "";
+        return getNameProduct();
     }
 
     @Override

@@ -2,39 +2,35 @@ package org.skypro.skyshop.searchEngine;
 
 import org.skypro.skyshop.product.Product;
 
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
 public class SearchEngine {
 
-    private static List<Searchable> searchables = new LinkedList<>();
-    private static int number = 0;
+    private static Map<String, Searchable> searchables = new HashMap<>();
 
     public static void add(Searchable searchable) {
-            searchables.add(searchable);
-            number++;
+        searchables.put(searchable.getName(), searchable);
     }
 
-    public static List<Searchable> search(String search) {
-        List<Searchable> result = new LinkedList<>();
-       int count = 0;
-       for (Searchable searchable : searchables){
-           if (searchable != null && searchable.searchTerm().contains(search)) {
-               result.add(searchable);
-           }
-       }
+    public static Map<String, Searchable> search(String search) {
+        Map<String, Searchable> result = new HashMap<>();
+        for (Map.Entry<String, Searchable> searchable: searchables.entrySet()) {
+            if (searchable != null && searchable.getKey().equals(search)) {
+                result.put(searchable.getKey(),searchable.getValue());
+            }
+        }
         if (result.size() == 0) {
             System.out.println("Поиск неудался");
         }
-       return result;
+        return result;
     }
 
-    public static  Searchable getSearchTerm(String search) throws BestResultNotFound {
+    public static Searchable getSearchTerm(String search) throws BestResultNotFound {
         Searchable result = null;
 
-        for (Searchable searchable : searchables) {
-            if (searchable != null && searchable.searchTerm().contains(search)) {
-                result = searchable;
+        for (Map.Entry<String, Searchable> searchable: searchables.entrySet()) {
+            if (searchable != null && searchable.getKey().equals(search)) {
+                result = searchable.getValue();
             }
         }
         if (result == null) {
