@@ -6,17 +6,17 @@ import java.util.*;
 
 public class SearchEngine {
 
-    private static Map<String, Searchable> searchables = new HashMap<>();
+    private static Set<String> searchables = new HashSet<>();
 
     public static void add(Searchable searchable) {
-        searchables.put(searchable.getName(), searchable);
+        searchables.add(searchable.getName());
     }
 
-    public static Map<String, Searchable> search(String search) {
-        Map<String, Searchable> result = new HashMap<>();
-        for (Map.Entry<String, Searchable> searchable: searchables.entrySet()) {
-            if (searchable != null && searchable.getKey().equals(search)) {
-                result.put(searchable.getKey(),searchable.getValue());
+    public static Set<String> search(String search) {
+        Set<String> result = new TreeSet<>(new SearchEngineComparator());
+        for (String searchable : searchables){
+            if (searchable != null && searchable.contains(search)) {
+                result.add(searchable);
             }
         }
         if (result.size() == 0) {
@@ -25,12 +25,12 @@ public class SearchEngine {
         return result;
     }
 
-    public static Searchable getSearchTerm(String search) throws BestResultNotFound {
-        Searchable result = null;
+    public static  String getSearchTerm(String search) throws BestResultNotFound {
+        String result = null;
 
-        for (Map.Entry<String, Searchable> searchable: searchables.entrySet()) {
-            if (searchable != null && searchable.getKey().equals(search)) {
-                result = searchable.getValue();
+        for (String searchable : searchables) {
+            if (searchable != null && searchable.contains(search)) {
+                result = searchable;
             }
         }
         if (result == null) {
@@ -40,3 +40,4 @@ public class SearchEngine {
         return result;
     }
 }
+
