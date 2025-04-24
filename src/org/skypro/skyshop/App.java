@@ -103,11 +103,11 @@ public class App {
 
         ProductBasket.printBasket();
 
-        System.out.println(cleanProductBasket("Валенки"));
+        System.out.println("Удалено" + cleanProductBasket("Валенки"));
 
         ProductBasket.printBasket();
 
-        System.out.println(cleanProductBasket("картошка"));
+        System.out.println("Удалено" + cleanProductBasket("картошка"));
 
         ProductBasket.printBasket();
 
